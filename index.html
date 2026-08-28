@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09090d">
+<title>Pour Eveline — Salomon</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,body{
+    width:100%;
+    height:100%;
+}
+
+body{
+    background:#09090d;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow:hidden;
+}
+
+/* BACKGROUND */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    top:-150px;
+    left:-130px;
+    background:rgba(255,70,120,.14);
+    filter:blur(100px);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+body::after{
+    content:"";
+    position:fixed;
+    width:350px;
+    height:350px;
+    right:-150px;
+    bottom:-150px;
+    background:rgba(110,70,255,.12);
+    filter:blur(100px);
+    border-radius:50%;
+    pointer-events:none;
+}
+
+/* APP */
+
+#app{
+    position:relative;
+    width:100%;
+    height:100vh;
+}
+
+/* PAGES */
+
+.page{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100vh;
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px 17px 70px;
+
+    overflow-y:auto;
+    text-align:center;
+}
+
+.page.active{
+    display:flex;
+    animation:pageIn .4s ease;
+}
+
+@keyframes pageIn{
+    from{
+        opacity:0;
+        transform:translateY(15px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.content{
+    width:100%;
+    max-width:560px;
+    margin:auto;
+}
+
+/* ICON */
+
+.icon{
+    width:72px;
+    height:72px;
+
+    margin:0 auto 24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.1);
+}
+
+.icon svg{
+    width:31px;
+    height:31px;
+
+    fill:none;
+    stroke:#ff789c;
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+/* TEXT */
+
+.label{
+    margin-bottom:17px;
+
+    color:#817d85;
+
+    font-size:10px;
+    letter-spacing:3px;
+    text-transform:uppercase;
+}
+
+h1,h2,h3{
+    font-family:Georgia,"Times New Roman",serif;
+}
+
+h1{
+    font-size:clamp(60px,17vw,105px);
+    line-height:.88;
+    letter-spacing:-4px;
+}
+
+h2{
+    font-size:clamp(40px,10vw,68px);
+    line-height:1;
+    letter-spacing:-2px;
+}
+
+.gradient{
+    background:linear-gradient(120deg,#fff,#ff7197);
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.text{
+    max-width:500px;
+
+    margin:24px auto 0;
+
+    color:#aaa6ae;
+
+    font-size:15px;
+    line-height:1.8;
+}
+
+/* BUTTON */
+
+.button{
+    min-height:55px;
+
+    margin-top:30px;
+
+    padding:15px 27px;
+
+    border:0;
+    border-radius:999px;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #ff5b88,
+        #ff315f
+    );
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    box-shadow:0 15px 40px rgba(255,55,105,.2);
+
+    transition:.2s;
+}
+
+.button:active{
+    transform:scale(.96);
+}
+
+.button svg{
+    width:17px;
+    height:17px;
+
+    margin-left:6px;
+
+    vertical-align:middle;
+
+    fill:none;
+    stroke:currentColor;
+    stroke-width:2;
+}
+
+/* SECONDARY BUTTON */
+
+.secondary{
+    min-height:50px;
+
+    margin-top:12px;
+
+    padding:13px 21px;
+
+    border-radius:999px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.1);
+
+    color:#aaa5ad;
+
+    font-size:13px;
+
+    cursor:pointer;
+}
+
+/* DATE CARD */
+
+.date-card{
+    max-width:400px;
+
+    margin:30px auto 0;
+
+    padding:34px 20px;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+}
+
+.date-number{
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:120px;
+
+    line-height:.75;
+
+    background:linear-gradient(
+        135deg,
+        #fff,
+        #ff7197
+    );
+
+    -webkit-background-clip:text;
+    background-clip:text;
+
+    color:transparent;
+}
+
+.date-month{
+    margin-top:25px;
+
+    color:#99949c;
+
+    letter-spacing:7px;
+
+    font-size:12px;
+}
+
+/* REASONS */
+
+.reasons{
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    margin-top:28px;
+}
+
+.reason{
+    padding:19px;
+
+    text-align:left;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+}
+
+.reason h3{
+    margin-bottom:7px;
+
+    font-size:21px;
+}
+
+.reason p{
+    color:#99949d;
+
+    font-size:14px;
+
+    line-height:1.65;
+}
+
+/* LETTER */
+
+.letter{
+    margin-top:28px;
+
+    padding:25px 21px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    text-align:left;
+}
+
+.letter p{
+    margin-bottom:17px;
+
+    color:#b8b3ba;
+
+    font-size:15px;
+
+    line-height:1.8;
+}
+
+.signature{
+    text-align:right;
+
+    color:#ff82a2;
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:25px;
+}
+
+/* QUESTION */
+
+.question-icon{
+    width:85px;
+    height:85px;
+
+    margin:0 auto 24px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:rgba(255,70,110,.06);
+
+    border:1px solid rgba(255,90,130,.2);
+}
+
+.question-icon svg{
+    width:39px;
+    height:39px;
+
+    fill:none;
+    stroke:#ff789c;
+    stroke-width:1.5;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.choices{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:12px;
+
+    max-width:420px;
+
+    margin:30px auto 0;
+}
+
+.choice{
+    height:58px;
+
+    border-radius:17px;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.yes{
+    border:0;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #ff5a88,
+        #ff315f
+    );
+}
+
+.no{
+    color:#aaa5ac;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.1);
+}
+
+/* FORM CARD */
+
+.card{
+    max-width:450px;
+
+    margin:28px auto 0;
+
+    padding:21px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    text-align:left;
+}
+
+.card label{
+    display:block;
+
+    margin-bottom:10px;
+
+    color:#aaa5ad;
+
+    font-size:13px;
+}
+
+input[type="date"]{
+    width:100%;
+    height:55px;
+
+    padding:0 14px;
+
+    border-radius:15px;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    background:#12121a;
+
+    color:#fff;
+
+    font-size:16px;
+}
+
+/* PLACES */
+
+.places{
+    display:flex;
+    flex-direction:column;
+
+    gap:9px;
+
+    margin-top:28px;
+}
+
+.place{
+    width:100%;
+    min-height:58px;
+
+    display:flex;
+    align-items:center;
+
+    gap:13px;
+
+    padding:10px 15px;
+
+    border-radius:18px;
+
+    color:#fff;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    text-align:left;
+
+    cursor:pointer;
+}
+
+.place.selected{
+    background:rgba(255,70,115,.1);
+
+    border-color:#ff5d89;
+}
+
+.place-number{
+    width:32px;
+    height:32px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    flex-shrink:0;
+
+    border-radius:10px;
+
+    background:rgba(255,255,255,.06);
+
+    color:#ff86a6;
+}
+
+/* TIMES */
+
+.times{
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+    max-width:450px;
+
+    margin:28px auto 0;
+}
+
+.time{
+    height:56px;
+
+    border-radius:17px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    color:#fff;
+
+    font-size:15px;
+
+    cursor:pointer;
+}
+
+.time.selected{
+    color:#ff86a6;
+
+    background:rgba(255,70,115,.1);
+
+    border-color:#ff5d89;
+}
+
+/* ERROR */
+
+.error{
+    display:none;
+
+    margin-top:10px;
+
+    color:#ff789b;
+
+    font-size:12px;
+}
+
+/* SUMMARY */
+
+.summary{
+    max-width:450px;
+
+    margin:28px auto 0;
+
+    padding:21px;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+
+    text-align:left;
+}
+
+.summary-row{
+    padding:14px 0;
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.summary-row:last-child{
+    border-bottom:0;
+}
+
+.summary-label{
+    margin-bottom:6px;
+
+    color:#77727a;
+
+    font-size:10px;
+
+    letter-spacing:2px;
+
+    text-transform:uppercase;
+}
+
+.summary-value{
+    color:#fff;
+
+    font-size:16px;
+
+    font-weight:bold;
+}
+
+.confirm{
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+
+    max-width:450px;
+
+    margin:24px auto 0;
+}
+
+.confirm button{
+    width:100%;
+
+    min-height:55px;
+
+    border-radius:17px;
+
+    font-size:14px;
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.confirm-yes{
+    border:0;
+
+    color:#fff;
+
+    background:linear-gradient(
+        135deg,
+        #ff5a88,
+        #ff315f
+    );
+}
+
+.confirm-back{
+    color:#aaa5ad;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.09);
+}
+
+/* FINAL */
+
+.names{
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+}
+
+.name{
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:clamp(45px,12vw,80px);
+}
+
+.x{
+    color:#ff7197;
+
+    font-size:22px;
+}
+
+.final-info{
+    margin-top:27px;
+
+    color:#aaa5ad;
+
+    line-height:1.9;
+}
+
+.love{
+    margin-top:25px;
+
+    color:#ff86a6;
+
+    font-family:Georgia,"Times New Roman",serif;
+
+    font-size:37px;
+}
+
+/* PROGRESS */
+
+.progress{
+    position:fixed;
+
+    left:50%;
+    bottom:14px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+
+    gap:5px;
+
+    padding:8px 10px;
+
+    border-radius:50px;
+
+    background:rgba(10,10,16,.8);
+
+    border:1px solid rgba(255,255,255,.07);
+
+    z-index:100;
+}
+
+.dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#454149;
+}
+
+.dot.active{
+    width:19px;
+
+    background:#ff5d89;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .choices{
+        grid-template-columns:1fr;
+    }
+
+    .date-number{
+        font-size:105px;
+    }
+
+    .page{
+        padding-left:15px;
+        padding-right:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="app">
+
+<!-- =====================================================
+PAGE 1 — ACCUEIL
+===================================================== -->
+
+<section class="page active" data-page="1">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
+</svg>
+
+</div>
+
+<div class="label">
+Un message de Salomon
+</div>
+
+<h1>
+Pour<br>
+<span class="gradient">Eveline</span>
+</h1>
+
+<p class="text">
+J'ai préparé quelque chose spécialement pour toi.
+Prends quelques instants pour découvrir
+ce que j'ai envie de te dire.
+</p>
+
+<button class="button" onclick="goTo(2)">
+Ouvrir
+<svg viewBox="0 0 24 24">
+<path d="M5 12h14"/>
+<path d="m13 6 6 6-6 6"/>
+</svg>
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 2 — DATE DE RENCONTRE
+===================================================== -->
+
+<section class="page" data-page="2">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+<rect x="3" y="4" width="18" height="17" rx="3"/>
+<path d="M16 2v4"/>
+<path d="M8 2v4"/>
+<path d="M3 10h18"/>
+<path d="M8 14h.01"/>
+<path d="M12 14h.01"/>
+<path d="M16 14h.01"/>
+</svg>
+
+</div>
+
+<div class="label">
+Petite question
+</div>
+
+<h2>
+Tu te souviens<br>
+<span class="gradient">de notre date ?</span>
+</h2>
+
+<p class="text">
+Je dois t'avouer quelque chose...
+ma mémoire m'a peut-être joué un petit tour.
+Alors cette fois, c'est toi qui peux me la rappeler.
+</p>
+
+<div class="card">
+
+<label for="storyDate">
+Notre date de rencontre
+</label>
+
+<input
+type="date"
+id="storyDate"
+>
+
+<div
+class="error"
+id="storyDateError"
+>
+Choisis une date ou continue sans la choisir.
+</div>
+
+</div>
+
+<button
+class="button"
+onclick="saveStoryDate()"
+>
+Choisir cette date
+</button>
+
+<br>
+
+<button
+class="secondary"
+onclick="continueWithoutStoryDate()"
+>
+Continuer sans choisir
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 3 — POURQUOI ELLE
+===================================================== -->
+
+<section class="page" data-page="3">
+
+<div class="content">
+
+<div class="label">
+Quelques mots pour toi
+</div>
+
+<h2>
+Pourquoi<br>
+<span class="gradient">toi ?</span>
+</h2>
+
+<p class="text">
+Parce que ce n'est pas une seule chose.
+Ce sont tous ces petits détails qui font
+que tu occupes une place particulière.
+</p>
+
+<div class="reasons">
+
+<div class="reason">
+<h3>Ta présence</h3>
+
+<p>
+Les moments sont différents quand tu es là.
+</p>
+</div>
+
+<div class="reason">
+<h3>Ton sourire</h3>
+
+<p>
+C'est l'un de ces petits détails
+que je remarque naturellement.
+</p>
+</div>
+
+<div class="reason">
+<h3>Ta personnalité</h3>
+
+<p>
+J'apprécie simplement la personne
+que tu es.
+</p>
+</div>
+
+</div>
+
+<button class="button" onclick="goTo(4)">
+Continuer
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 4 — SENTIMENTS
+===================================================== -->
+
+<section class="page" data-page="4">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
+</svg>
+
+</div>
+
+<div class="label">
+Ce que je ressens
+</div>
+
+<h2>
+Simplement<br>
+<span class="gradient">sincère.</span>
+</h2>
+
+<p class="text">
+Je pourrais chercher des mots compliqués,
+mais je préfère simplement être honnête.
+</p>
+
+<div class="date-card">
+
+<p class="text">
+Eveline, je tiens énormément à toi.
+</p>
+
+<p class="text">
+Tu occupes une place particulière dans mon cœur
+et je voulais simplement que tu le saches.
+</p>
+
+</div>
+
+<button class="button" onclick="goTo(5)">
+Continuer
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 5 — HISTOIRE
+===================================================== -->
+
+<section class="page" data-page="5">
+
+<div class="content">
+
+<div class="label">
+Quelques pages de notre histoire
+</div>
+
+<h2>
+Une histoire<br>
+<span class="gradient">à écrire.</span>
+</h2>
+
+<p class="text">
+Les plus beaux souvenirs commencent parfois
+par des choses très simples.
+</p>
+
+<div class="reasons">
+
+<div class="reason">
+<h3>Notre rencontre</h3>
+
+<p>
+Un moment parmi tant d'autres,
+mais qui est devenu important.
+</p>
+</div>
+
+<div class="reason">
+<h3>Aujourd'hui</h3>
+
+<p>
+Je voulais prendre le temps
+de te dire ce que j'ai dans le cœur.
+</p>
+</div>
+
+<div class="reason">
+<h3>Demain</h3>
+
+<p>
+Les prochaines pages ne sont pas encore écrites.
+</p>
+</div>
+
+</div>
+
+<button class="button" onclick="goTo(6)">
+Lire ma lettre
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 6 — LETTRE
+===================================================== -->
+
+<section class="page" data-page="6">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+<rect x="4" y="5" width="16" height="14" rx="2"/>
+<path d="m4 7 8 6 8-6"/>
+</svg>
+
+</div>
+
+<div class="label">
+Une lettre de Salomon
+</div>
+
+<div class="letter">
+
+<p>
+Eveline,
+</p>
+
+<p>
+Je voulais prendre le temps de t'écrire
+quelque chose de différent.
+</p>
+
+<p>
+Je ne sais pas toujours comment mettre
+mes sentiments en mots, alors je préfère
+simplement être sincère avec toi.
+</p>
+
+<p>
+Tu es devenue une personne qui compte
+énormément pour moi.
+</p>
+
+<p>
+J'apprécie nos conversations,
+nos moments et tous ces petits souvenirs.
+</p>
+
+<p>
+Et surtout, je veux que tu saches une chose :
+<strong>je t'aime fort, fort.</strong>
+</p>
+
+<p>
+Merci d'être toi.
+</p>
+
+<div class="signature">
+Salomon
+</div>
+
+</div>
+
+<button class="button" onclick="goTo(7)">
+Une dernière question
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 7 — QUESTION DATE
+===================================================== -->
+
+<section class="page" data-page="7">
+
+<div class="content">
+
+<div class="question-icon">
+
+<svg viewBox="0 0 24 24">
+
+<rect x="3" y="4" width="18" height="17" rx="3"/>
+
+<path d="M16 2v4"/>
+<path d="M8 2v4"/>
+<path d="M3 10h18"/>
+
+<path d="M8 14h.01"/>
+<path d="M12 14h.01"/>
+<path d="M16 14h.01"/>
+
+</svg>
+
+</div>
+
+<div class="label">
+Une petite question
+</div>
+
+<h2>
+Tu veux un<br>
+<span class="gradient">date avec moi ?</span>
+</h2>
+
+<p class="text">
+J'aimerais passer un beau moment avec toi.
+Cette fois, c'est toi qui choisis.
+</p>
+
+<div class="choices">
+
+<button
+class="choice yes"
+onclick="goTo(8)"
+>
+Oui
+</button>
+
+<button
+class="choice no"
+onclick="goTo(13)"
+>
+Non
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 8 — CHOISIR DATE RENDEZ-VOUS
+===================================================== -->
+
+<section class="page" data-page="8">
+
+<div class="content">
+
+<div class="label">
+Première étape
+</div>
+
+<h2>
+Choisis la<br>
+<span class="gradient">date.</span>
+</h2>
+
+<p class="text">
+Quel jour aimerais-tu qu'on se retrouve ?
+</p>
+
+<div class="card">
+
+<label for="dateInput">
+Date du rendez-vous
+</label>
+
+<input
+type="date"
+id="dateInput"
+>
+
+<div
+class="error"
+id="dateError"
+>
+Choisis une date pour continuer.
+</div>
+
+</div>
+
+<button
+class="button"
+onclick="saveDate()"
+>
+Continuer
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 9 — LIEU
+===================================================== -->
+
+<section class="page" data-page="9">
+
+<div class="content">
+
+<div class="label">
+Deuxième étape
+</div>
+
+<h2>
+Choisis le<br>
+<span class="gradient">lieu.</span>
+</h2>
+
+<p class="text">
+Quel endroit te ferait plaisir ?
+</p>
+
+<div class="places">
+
+<button
+class="place"
+onclick="selectPlace(this,'Magali Resto')"
+>
+<span class="place-number">1</span>
+<span>Magali Resto</span>
+</button>
+
+<button
+class="place"
+onclick="selectPlace(this,'L’Alignement')"
+>
+<span class="place-number">2</span>
+<span>L’Alignement</span>
+</button>
+
+<button
+class="place"
+onclick="selectPlace(this,'Asha Villa')"
+>
+<span class="place-number">3</span>
+<span>Asha Villa</span>
+</button>
+
+<button
+class="place"
+onclick="selectPlace(this,'Serena Hôtel')"
+>
+<span class="place-number">4</span>
+<span>Serena Hôtel</span>
+</button>
+
+<button
+class="place"
+onclick="selectPlace(this,'Chez toi')"
+>
+<span class="place-number">5</span>
+<span>Chez toi</span>
+</button>
+
+<button
+class="place"
+onclick="selectPlace(this,'Chez moi')"
+>
+<span class="place-number">6</span>
+<span>Chez moi</span>
+</button>
+
+</div>
+
+<div
+class="error"
+id="placeError"
+>
+Choisis un lieu pour continuer.
+</div>
+
+<button
+class="button"
+onclick="savePlace()"
+>
+Continuer
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 10 — HEURE
+===================================================== -->
+
+<section class="page" data-page="10">
+
+<div class="content">
+
+<div class="label">
+Dernière étape
+</div>
+
+<h2>
+Choisis<br>
+<span class="gradient">l'heure.</span>
+</h2>
+
+<p class="text">
+Quelle heure te conviendrait le mieux ?
+</p>
+
+<div class="times">
+
+<button
+class="time"
+onclick="selectTime(this,'12:00')"
+>
+12:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'13:00')"
+>
+13:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'14:00')"
+>
+14:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'15:00')"
+>
+15:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'16:00')"
+>
+16:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'17:00')"
+>
+17:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'18:00')"
+>
+18:00
+</button>
+
+<button
+class="time"
+onclick="selectTime(this,'19:00')"
+>
+19:00
+</button>
+
+</div>
+
+<div
+class="error"
+id="timeError"
+>
+Choisis une heure pour continuer.
+</div>
+
+<button
+class="button"
+onclick="saveTime()"
+>
+Voir la synthèse
+</button>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 11 — SYNTHESE
+===================================================== -->
+
+<section class="page" data-page="11">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+
+<rect x="3" y="3" width="18" height="18" rx="4"/>
+
+<path d="m7 12 3 3 7-7"/>
+
+</svg>
+
+</div>
+
+<div class="label">
+Ton choix
+</div>
+
+<h2>
+Notre petit<br>
+<span class="gradient">programme.</span>
+</h2>
+
+<div class="summary">
+
+<div class="summary-row">
+
+<div class="summary-label">
+Date
+</div>
+
+<div
+class="summary-value"
+id="summaryDate"
+>
+—
+</div>
+
+</div>
+
+<div class="summary-row">
+
+<div class="summary-label">
+Lieu
+</div>
+
+<div
+class="summary-value"
+id="summaryPlace"
+>
+—
+</div>
+
+</div>
+
+<div class="summary-row">
+
+<div class="summary-label">
+Heure
+</div>
+
+<div
+class="summary-value"
+id="summaryTime"
+>
+—
+</div>
+
+</div>
+
+</div>
+
+<p class="text">
+Eveline, est-ce que ce programme
+te convient ?
+</p>
+
+<div class="confirm">
+
+<button
+class="confirm-yes"
+onclick="confirmDate()"
+>
+Oui, c'est parfait
+</button>
+
+<button
+class="confirm-back"
+onclick="restartDate()"
+>
+Non, je veux recommencer
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 12 — CONFIRMATION
+===================================================== -->
+
+<section class="page" data-page="12">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+
+<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
+
+</svg>
+
+</div>
+
+<div class="label">
+Alors c'est décidé
+</div>
+
+<div class="names">
+
+<span class="name gradient">
+Eveline
+</span>
+
+<span class="x">
+×
+</span>
+
+<span class="name">
+Salomon
+</span>
+
+</div>
+
+<p class="final-info">
+
+Notre rendez-vous est choisi.
+
+<br><br>
+
+<strong id="finalDate">—</strong>
+
+<br>
+
+<strong id="finalPlace">—</strong>
+
+<br>
+
+<strong id="finalTime">—</strong>
+
+<br><br>
+
+Je garderai ce petit moment précieusement.
+
+</p>
+
+<div class="love">
+Je t'aime fort.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+PAGE 13 — NON
+===================================================== -->
+
+<section class="page" data-page="13">
+
+<div class="content">
+
+<div class="icon">
+
+<svg viewBox="0 0 24 24">
+
+<path d="M6 6l12 12"/>
+<path d="M18 6 6 18"/>
+
+</svg>
+
+</div>
+
+<div class="label">
+D'accord
+</div>
+
+<h2>
+Je respecte<br>
+<span class="gradient">ton choix.</span>
+</h2>
+
+<p class="text">
+Aucun problème Eveline.
+Ce qui compte, c'est que tu sois
+à l'aise avec ton choix.
+</p>
+
+<button
+class="button"
+onclick="goTo(7)"
+>
+Revenir
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+<!-- =====================================================
+PROGRESSION
+===================================================== -->
+
+<div class="progress">
+
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+VARIABLES
+===================================================== */
+
+let storyDate = "";
+
+let selectedDate = "";
+
+let selectedPlace = "";
+
+let selectedTime = "";
+
+
+/* =====================================================
+ELEMENTS
+===================================================== */
+
+const pages = document.querySelectorAll(".page");
+
+const dots = document.querySelectorAll(".dot");
+
+
+/* =====================================================
+NAVIGATION
+===================================================== */
+
+function goTo(number){
+
+    pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+    const target = document.querySelector(
+        '.page[data-page="' + number + '"]'
+    );
+
+    if(target){
+
+        target.classList.add("active");
+
+        target.scrollTop = 0;
+
+    }
+
+    dots.forEach(function(dot,index){
+
+        dot.classList.toggle(
+            "active",
+            index === number - 1
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+DATE DE RENCONTRE
+===================================================== */
+
+function saveStoryDate(){
+
+    const input =
+        document.getElementById("storyDate");
+
+    const error =
+        document.getElementById("storyDateError");
+
+    if(!input.value){
+
+        error.style.display = "block";
+
+        return;
+
+    }
+
+    error.style.display = "none";
+
+    storyDate = input.value;
+
+    goTo(3);
+
+}
+
+
+/* CONTINUER SANS DATE */
+
+function continueWithoutStoryDate(){
+
+    storyDate = "";
+
+    const error =
+        document.getElementById("storyDateError");
+
+    error.style.display = "none";
+
+    goTo(3);
+
+}
+
+
+/* =====================================================
+DATE DU RENDEZ-VOUS
+===================================================== */
+
+function saveDate(){
+
+    const input =
+        document.getElementById("dateInput");
+
+    const error =
+        document.getElementById("dateError");
+
+    if(!input.value){
+
+        error.style.display = "block";
+
+        return;
+
+    }
+
+    error.style.display = "none";
+
+    selectedDate = input.value;
+
+    goTo(9);
+
+}
+
+
+/* =====================================================
+CHOIX DU LIEU
+===================================================== */
+
+function selectPlace(element,name){
+
+    document.querySelectorAll(".place").forEach(
+        function(place){
+
+            place.classList.remove("selected");
+
+        }
+    );
+
+    element.classList.add("selected");
+
+    selectedPlace = name;
+
+    document.getElementById(
+        "placeError"
+    ).style.display = "none";
+
+}
+
+
+function savePlace(){
+
+    const error =
+        document.getElementById("placeError");
+
+    if(!selectedPlace){
+
+        error.style.display = "block";
+
+        return;
+
+    }
+
+    error.style.display = "none";
+
+    goTo(10);
+
+}
+
+
+/* =====================================================
+CHOIX DE L'HEURE
+===================================================== */
+
+function selectTime(element,time){
+
+    document.querySelectorAll(".time").forEach(
+        function(button){
+
+            button.classList.remove("selected");
+
+        }
+    );
+
+    element.classList.add("selected");
+
+    selectedTime = time;
+
+    document.getElementById(
+        "timeError"
+    ).style.display = "none";
+
+}
+
+
+function saveTime(){
+
+    const error =
+        document.getElementById("timeError");
+
+    if(!selectedTime){
+
+        error.style.display = "block";
+
+        return;
+
+    }
+
+    error.style.display = "none";
+
+    updateSummary();
+
+    goTo(11);
+
+}
+
+
+/* =====================================================
+FORMAT DATE
+===================================================== */
+
+function formatDate(value){
+
+    if(!value){
+
+        return "Aucune date choisie";
+
+    }
+
+    const date =
+        new Date(value + "T12:00:00");
+
+    return date.toLocaleDateString(
+        "fr-FR",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric"
+        }
+    );
+
+}
+
+
+/* =====================================================
+SYNTHESE
+===================================================== */
+
+function updateSummary(){
+
+    document.getElementById(
+        "summaryDate"
+    ).textContent =
+        formatDate(selectedDate);
+
+    document.getElementById(
+        "summaryPlace"
+    ).textContent =
+        selectedPlace || "—";
+
+    document.getElementById(
+        "summaryTime"
+    ).textContent =
+        selectedTime || "—";
+
+}
+
+
+/* =====================================================
+CONFIRMATION
+===================================================== */
+
+function confirmDate(){
+
+    document.getElementById(
+        "finalDate"
+    ).textContent =
+        formatDate(selectedDate);
+
+    document.getElementById(
+        "finalPlace"
+    ).textContent =
+        selectedPlace || "—";
+
+    document.getElementById(
+        "finalTime"
+    ).textContent =
+        selectedTime || "—";
+
+    goTo(12);
+
+}
+
+
+/* =====================================================
+RECOMMENCER LE RENDEZ-VOUS
+===================================================== */
+
+function restartDate(){
+
+    selectedDate = "";
+
+    selectedPlace = "";
+
+    selectedTime = "";
+
+    document.getElementById(
+        "dateInput"
+    ).value = "";
+
+    document.querySelectorAll(".place").forEach(
+        function(place){
+
+            place.classList.remove("selected");
+
+        }
+    );
+
+    document.querySelectorAll(".time").forEach(
+        function(time){
+
+            time.classList.remove("selected");
+
+        }
+    );
+
+    document.querySelectorAll(".error").forEach(
+        function(error){
+
+            error.style.display = "none";
+
+        }
+    );
+
+    goTo(7);
+
+}
+
+
+/* =====================================================
+DEMARRAGE
+===================================================== */
+
+goTo(1);
+
+</script>
+
+</body>
+</html>
