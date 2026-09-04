@@ -1,2074 +1,2504 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#09090d">
-<title>Pour Eveline — Salomon</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
+  <title>DALZON ENTERPRISE — Innovation. Technologie. Impact.</title>
+  <meta name="description" content="DALZON ENTERPRISE — Entreprise technologique dédiée à l'innovation, à l'éducation et aux solutions numériques en Afrique.">
+  <meta name="theme-color" content="#08111f">
 
-html,body{
-    width:100%;
-    height:100%;
-}
+  <!-- Favicon / Icône du site -->
+  <link rel="icon" type="image/jpeg" href="https://i.postimg.cc/25ybsY08/1782158628703.jpg">
+  <link rel="apple-touch-icon" href="https://i.postimg.cc/25ybsY08/1782158628703.jpg">
 
-body{
-    background:#09090d;
-    color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
-    overflow:hidden;
-}
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
 
-/* BACKGROUND */
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-body::before{
-    content:"";
-    position:fixed;
-    width:350px;
-    height:350px;
-    top:-150px;
-    left:-130px;
-    background:rgba(255,70,120,.14);
-    filter:blur(100px);
-    border-radius:50%;
-    pointer-events:none;
-}
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-body::after{
-    content:"";
-    position:fixed;
-    width:350px;
-    height:350px;
-    right:-150px;
-    bottom:-150px;
-    background:rgba(110,70,255,.12);
-    filter:blur(100px);
-    border-radius:50%;
-    pointer-events:none;
-}
-
-/* APP */
-
-#app{
-    position:relative;
-    width:100%;
-    height:100vh;
-}
-
-/* PAGES */
-
-.page{
-    position:absolute;
-    inset:0;
-    width:100%;
-    height:100vh;
-
-    display:none;
-    align-items:center;
-    justify-content:center;
-
-    padding:25px 17px 70px;
-
-    overflow-y:auto;
-    text-align:center;
-}
-
-.page.active{
-    display:flex;
-    animation:pageIn .4s ease;
-}
-
-@keyframes pageIn{
-    from{
-        opacity:0;
-        transform:translateY(15px);
+  <style>
+    :root {
+      --bg: #f4f8fc;
+      --bg-soft: #eaf1f8;
+      --surface: rgba(255,255,255,.68);
+      --surface-solid: #ffffff;
+      --text: #07111f;
+      --muted: #637286;
+      --primary: #0878ff;
+      --primary-2: #00b8ff;
+      --accent: #6f5cff;
+      --border: rgba(8,120,255,.14);
+      --shadow: 0 24px 80px rgba(8,35,70,.13);
+      --header: rgba(255,255,255,.74);
+      --radius: 26px;
     }
 
-    to{
-        opacity:1;
-        transform:translateY(0);
+    body.dark {
+      --bg: #050b14;
+      --bg-soft: #091522;
+      --surface: rgba(11,23,38,.72);
+      --surface-solid: #0c1827;
+      --text: #f4f8ff;
+      --muted: #9caabd;
+      --primary: #2d91ff;
+      --primary-2: #00d1ff;
+      --accent: #8174ff;
+      --border: rgba(87,166,255,.18);
+      --shadow: 0 24px 90px rgba(0,0,0,.35);
+      --header: rgba(5,12,22,.72);
     }
-}
 
-.content{
-    width:100%;
-    max-width:560px;
-    margin:auto;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
 
-/* ICON */
+    html {
+      scroll-padding-top: 90px;
+    }
 
-.icon{
-    width:72px;
-    height:72px;
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(0,184,255,.09), transparent 28%),
+        radial-gradient(circle at 90% 20%, rgba(111,92,255,.10), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background .4s ease, color .4s ease;
+    }
 
-    margin:0 auto 24px;
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2;
+      background:
+        linear-gradient(rgba(0,130,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,130,255,.025) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, black, transparent 85%);
+    }
 
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-    border-radius:50%;
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.1);
-}
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
 
-.icon svg{
-    width:31px;
-    height:31px;
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
 
-    fill:none;
-    stroke:#ff789c;
-    stroke-width:1.6;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-}
+    /* =========================
+       LOADER
+    ========================== */
 
-/* TEXT */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: #050b14;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      transition: opacity .7s ease, visibility .7s ease;
+    }
 
-.label{
-    margin-bottom:17px;
+    #loader.hide {
+      opacity: 0;
+      visibility: hidden;
+    }
 
-    color:#817d85;
+    .loader-box {
+      text-align: center;
+    }
 
-    font-size:10px;
-    letter-spacing:3px;
-    text-transform:uppercase;
-}
+    .loader-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 25px;
+      object-fit: cover;
+      margin: auto;
+      animation: loaderPulse 1.5s infinite;
+      box-shadow:
+        0 0 30px rgba(0,180,255,.3),
+        0 0 90px rgba(80,80,255,.15);
+    }
 
-h1,h2,h3{
-    font-family:Georgia,"Times New Roman",serif;
-}
+    .loader-line {
+      width: 170px;
+      height: 3px;
+      margin: 25px auto 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,.12);
+      border-radius: 50px;
+    }
 
-h1{
-    font-size:clamp(60px,17vw,105px);
-    line-height:.88;
-    letter-spacing:-4px;
-}
+    .loader-line span {
+      display: block;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg,var(--primary),var(--primary-2),var(--accent));
+      animation: loaderMove 1s infinite;
+    }
 
-h2{
-    font-size:clamp(40px,10vw,68px);
-    line-height:1;
-    letter-spacing:-2px;
-}
+    .loader-box p {
+      color: #9baabd;
+      font-size: 12px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
 
-.gradient{
-    background:linear-gradient(120deg,#fff,#ff7197);
+    @keyframes loaderPulse {
+      50% { transform: scale(1.07); }
+    }
 
-    -webkit-background-clip:text;
-    background-clip:text;
+    @keyframes loaderMove {
+      from { transform: translateX(-110%); }
+      to { transform: translateX(220%); }
+    }
 
-    color:transparent;
-}
+    /* =========================
+       HEADER
+    ========================== */
 
-.text{
-    max-width:500px;
+    header {
+      position: fixed;
+      top: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(1160px, 94%);
+      height: 68px;
+      z-index: 1000;
+      border: 1px solid var(--border);
+      background: var(--header);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      transition: .3s ease;
+    }
 
-    margin:24px auto 0;
+    .nav {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px 0 18px;
+    }
 
-    color:#aaa6ae;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      white-space: nowrap;
+    }
 
-    font-size:15px;
-    line-height:1.8;
-}
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: cover;
+      border-radius: 11px;
+      box-shadow: 0 7px 20px rgba(0,110,255,.2);
+    }
 
-/* BUTTON */
+    .brand span {
+      letter-spacing: -.4px;
+    }
 
-.button{
-    min-height:55px;
+    .brand small {
+      display: block;
+      font-family: "Inter";
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
 
-    margin-top:30px;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
 
-    padding:15px 27px;
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-size: 12px;
+      color: var(--muted);
+      transition: .25s ease;
+    }
 
-    border:0;
-    border-radius:999px;
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: rgba(60,145,255,.10);
+    }
 
-    color:#fff;
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-    background:linear-gradient(
+    .icon-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      border-radius: 12px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: .3s ease;
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-2px) rotate(4deg);
+      border-color: var(--primary);
+      box-shadow: 0 8px 25px rgba(0,120,255,.15);
+    }
+
+    .menu-btn {
+      display: none;
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 80px;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      width: fit-content;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      background: var(--surface);
+      backdrop-filter: blur(14px);
+      color: var(--muted);
+      font-size: 11px;
+      margin-bottom: 25px;
+    }
+
+    .eyebrow i {
+      color: var(--primary);
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(48px, 7.3vw, 96px);
+      line-height: .95;
+      letter-spacing: -5px;
+      margin-bottom: 28px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, var(--primary), var(--primary-2), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 200%;
+      animation: gradientFlow 6s infinite linear;
+    }
+
+    @keyframes gradientFlow {
+      50% { background-position: 100% 50%; }
+    }
+
+    .hero p {
+      max-width: 690px;
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 16px;
+      margin-bottom: 34px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .liquid-btn {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 14px 20px;
+      border-radius: 16px;
+      background: linear-gradient(
         135deg,
-        #ff5b88,
-        #ff315f
-    );
-
-    font-size:14px;
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:0 15px 40px rgba(255,55,105,.2);
-
-    transition:.2s;
-}
-
-.button:active{
-    transform:scale(.96);
-}
-
-.button svg{
-    width:17px;
-    height:17px;
-
-    margin-left:6px;
-
-    vertical-align:middle;
-
-    fill:none;
-    stroke:currentColor;
-    stroke-width:2;
-}
-
-/* SECONDARY BUTTON */
-
-.secondary{
-    min-height:50px;
-
-    margin-top:12px;
-
-    padding:13px 21px;
-
-    border-radius:999px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.1);
-
-    color:#aaa5ad;
-
-    font-size:13px;
-
-    cursor:pointer;
-}
-
-/* DATE CARD */
-
-.date-card{
-    max-width:400px;
-
-    margin:30px auto 0;
-
-    padding:34px 20px;
-
-    border-radius:28px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-}
-
-.date-number{
-    font-family:Georgia,"Times New Roman",serif;
-
-    font-size:120px;
-
-    line-height:.75;
-
-    background:linear-gradient(
-        135deg,
-        #fff,
-        #ff7197
-    );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
-}
-
-.date-month{
-    margin-top:25px;
-
-    color:#99949c;
-
-    letter-spacing:7px;
-
-    font-size:12px;
-}
-
-/* REASONS */
-
-.reasons{
-    display:flex;
-    flex-direction:column;
-
-    gap:10px;
-
-    margin-top:28px;
-}
-
-.reason{
-    padding:19px;
-
-    text-align:left;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.reason h3{
-    margin-bottom:7px;
-
-    font-size:21px;
-}
-
-.reason p{
-    color:#99949d;
-
-    font-size:14px;
-
-    line-height:1.65;
-}
-
-/* LETTER */
-
-.letter{
-    margin-top:28px;
-
-    padding:25px 21px;
-
-    border-radius:24px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    text-align:left;
-}
-
-.letter p{
-    margin-bottom:17px;
-
-    color:#b8b3ba;
-
-    font-size:15px;
-
-    line-height:1.8;
-}
-
-.signature{
-    text-align:right;
-
-    color:#ff82a2;
-
-    font-family:Georgia,"Times New Roman",serif;
-
-    font-size:25px;
-}
-
-/* QUESTION */
-
-.question-icon{
-    width:85px;
-    height:85px;
-
-    margin:0 auto 24px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    border-radius:50%;
-
-    background:rgba(255,70,110,.06);
-
-    border:1px solid rgba(255,90,130,.2);
-}
-
-.question-icon svg{
-    width:39px;
-    height:39px;
-
-    fill:none;
-    stroke:#ff789c;
-    stroke-width:1.5;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-}
-
-.choices{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:12px;
-
-    max-width:420px;
-
-    margin:30px auto 0;
-}
-
-.choice{
-    height:58px;
-
-    border-radius:17px;
-
-    font-size:15px;
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-.yes{
-    border:0;
-
-    color:#fff;
-
-    background:linear-gradient(
-        135deg,
-        #ff5a88,
-        #ff315f
-    );
-}
-
-.no{
-    color:#aaa5ac;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.1);
-}
-
-/* FORM CARD */
-
-.card{
-    max-width:450px;
-
-    margin:28px auto 0;
-
-    padding:21px;
-
-    border-radius:24px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    text-align:left;
-}
-
-.card label{
-    display:block;
-
-    margin-bottom:10px;
-
-    color:#aaa5ad;
-
-    font-size:13px;
-}
-
-input[type="date"]{
-    width:100%;
-    height:55px;
-
-    padding:0 14px;
-
-    border-radius:15px;
-
-    border:1px solid rgba(255,255,255,.1);
-
-    background:#12121a;
-
-    color:#fff;
-
-    font-size:16px;
-}
-
-/* PLACES */
-
-.places{
-    display:flex;
-    flex-direction:column;
-
-    gap:9px;
-
-    margin-top:28px;
-}
-
-.place{
-    width:100%;
-    min-height:58px;
-
-    display:flex;
-    align-items:center;
-
-    gap:13px;
-
-    padding:10px 15px;
-
-    border-radius:18px;
-
-    color:#fff;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    text-align:left;
-
-    cursor:pointer;
-}
-
-.place.selected{
-    background:rgba(255,70,115,.1);
-
-    border-color:#ff5d89;
-}
-
-.place-number{
-    width:32px;
-    height:32px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    flex-shrink:0;
-
-    border-radius:10px;
-
-    background:rgba(255,255,255,.06);
-
-    color:#ff86a6;
-}
-
-/* TIMES */
-
-.times{
-    display:grid;
-
-    grid-template-columns:1fr 1fr;
-
-    gap:10px;
-
-    max-width:450px;
-
-    margin:28px auto 0;
-}
-
-.time{
-    height:56px;
-
-    border-radius:17px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    color:#fff;
-
-    font-size:15px;
-
-    cursor:pointer;
-}
-
-.time.selected{
-    color:#ff86a6;
-
-    background:rgba(255,70,115,.1);
-
-    border-color:#ff5d89;
-}
-
-/* ERROR */
-
-.error{
-    display:none;
-
-    margin-top:10px;
-
-    color:#ff789b;
-
-    font-size:12px;
-}
-
-/* SUMMARY */
-
-.summary{
-    max-width:450px;
-
-    margin:28px auto 0;
-
-    padding:21px;
-
-    border-radius:24px;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    text-align:left;
-}
-
-.summary-row{
-    padding:14px 0;
-
-    border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.summary-row:last-child{
-    border-bottom:0;
-}
-
-.summary-label{
-    margin-bottom:6px;
-
-    color:#77727a;
-
-    font-size:10px;
-
-    letter-spacing:2px;
-
-    text-transform:uppercase;
-}
-
-.summary-value{
-    color:#fff;
-
-    font-size:16px;
-
-    font-weight:bold;
-}
-
-.confirm{
-    display:flex;
-    flex-direction:column;
-
-    gap:10px;
-
-    max-width:450px;
-
-    margin:24px auto 0;
-}
-
-.confirm button{
-    width:100%;
-
-    min-height:55px;
-
-    border-radius:17px;
-
-    font-size:14px;
-    font-weight:bold;
-
-    cursor:pointer;
-}
-
-.confirm-yes{
-    border:0;
-
-    color:#fff;
-
-    background:linear-gradient(
-        135deg,
-        #ff5a88,
-        #ff315f
-    );
-}
-
-.confirm-back{
-    color:#aaa5ad;
-
-    background:rgba(255,255,255,.04);
-
-    border:1px solid rgba(255,255,255,.09);
-}
-
-/* FINAL */
-
-.names{
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    flex-wrap:wrap;
-
-    gap:12px;
-}
-
-.name{
-    font-family:Georgia,"Times New Roman",serif;
-
-    font-size:clamp(45px,12vw,80px);
-}
-
-.x{
-    color:#ff7197;
-
-    font-size:22px;
-}
-
-.final-info{
-    margin-top:27px;
-
-    color:#aaa5ad;
-
-    line-height:1.9;
-}
-
-.love{
-    margin-top:25px;
-
-    color:#ff86a6;
-
-    font-family:Georgia,"Times New Roman",serif;
-
-    font-size:37px;
-}
-
-/* PROGRESS */
-
-.progress{
-    position:fixed;
-
-    left:50%;
-    bottom:14px;
-
-    transform:translateX(-50%);
-
-    display:flex;
-
-    gap:5px;
-
-    padding:8px 10px;
-
-    border-radius:50px;
-
-    background:rgba(10,10,16,.8);
-
-    border:1px solid rgba(255,255,255,.07);
-
-    z-index:100;
-}
-
-.dot{
-    width:6px;
-    height:6px;
-
-    border-radius:50%;
-
-    background:#454149;
-}
-
-.dot.active{
-    width:19px;
-
-    background:#ff5d89;
-}
-
-/* MOBILE */
-
-@media(max-width:500px){
-
-    .choices{
-        grid-template-columns:1fr;
+        rgba(255,255,255,.25),
+        rgba(0,130,255,.13)
+      );
+      backdrop-filter: blur(18px);
+      color: var(--text);
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 13px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.4),
+        0 12px 35px rgba(0,100,255,.10);
+      transition: .35s ease;
     }
 
-    .date-number{
-        font-size:105px;
+    .liquid-btn::before {
+      content: "";
+      position: absolute;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.2);
+      top: -90px;
+      left: -100px;
+      transition: .5s ease;
     }
 
-    .page{
-        padding-left:15px;
-        padding-right:15px;
+    .liquid-btn:hover {
+      transform: translateY(-4px);
+      border-color: rgba(60,160,255,.5);
+      box-shadow: 0 18px 45px rgba(0,120,255,.20);
     }
-}
-</style>
+
+    .liquid-btn:hover::before {
+      left: 90%;
+      top: 60%;
+    }
+
+    .primary-btn {
+      background: linear-gradient(135deg,var(--primary),var(--accent));
+      color: white;
+      border: none;
+    }
+
+    /* Hero orb */
+
+    .hero-orb {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      right: -160px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 35% 30%,
+          rgba(255,255,255,.9),
+          rgba(0,180,255,.4) 15%,
+          rgba(80,60,255,.22) 42%,
+          transparent 70%);
+      filter: blur(1px);
+      opacity: .65;
+      animation: orbFloat 8s ease-in-out infinite;
+    }
+
+    .hero-orb::after {
+      content: "";
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 1px solid rgba(0,180,255,.3);
+      box-shadow:
+        0 0 70px rgba(0,150,255,.22),
+        inset 0 0 60px rgba(100,80,255,.16);
+      animation: orbRotate 14s linear infinite;
+    }
+
+    @keyframes orbFloat {
+      50% { transform: translateY(-50%) translate(-20px,20px) scale(1.04); }
+    }
+
+    @keyframes orbRotate {
+      to { transform: rotate(360deg); }
+    }
+
+    /* particles */
+
+    #particles {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 50%;
+      opacity: .55;
+      animation: particleMove linear infinite;
+    }
+
+    @keyframes particleMove {
+      from {
+        transform: translateY(100vh);
+        opacity: 0;
+      }
+      20% { opacity: .7; }
+      80% { opacity: .7; }
+      to {
+        transform: translateY(-20vh);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       SECTION
+    ========================== */
+
+    section {
+      padding: 105px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 48px;
+    }
+
+    .section-kicker {
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      font-size: 10px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .section-head h2 {
+      font-family: "Space Grotesk";
+      font-size: clamp(32px, 5vw, 55px);
+      letter-spacing: -2.5px;
+      line-height: 1;
+      margin-bottom: 17px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       STATS
+    ========================== */
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+    .stat {
+      padding: 30px;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-family: "Space Grotesk";
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .stat-number::after {
+      content: "+";
+      color: var(--primary);
+    }
+
+    .stat p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 6px;
+    }
+
+    /* =========================
+       GLASS CARDS
+    ========================== */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .glass-card {
+      padding: 30px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: .4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,160,255,.12), transparent 70%);
+      top: -60px;
+      right: -40px;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(50,150,255,.35);
+    }
+
+    .card-icon {
+      width: 53px;
+      height: 53px;
+      display: grid;
+      place-items: center;
+      border-radius: 17px;
+      background: rgba(30,140,255,.10);
+      border: 1px solid var(--border);
+      color: var(--primary);
+      font-size: 19px;
+      margin-bottom: 22px;
+    }
+
+    .glass-card h3 {
+      font-family: "Space Grotesk";
+      margin-bottom: 12px;
+      font-size: 21px;
+    }
+
+    .glass-card p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 13px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================== */
+
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+    }
+
+    .project {
+      min-height: 280px;
+      padding: 30px;
+      border-radius: 30px;
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(0,130,255,.10), transparent),
+        var(--surface);
+      backdrop-filter: blur(20px);
+      transition: .4s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-7px) scale(1.01);
+    }
+
+    .project-number {
+      color: var(--primary);
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: 800;
+    }
+
+    .project h3 {
+      font-family: "Space Grotesk";
+      font-size: 31px;
+      margin: 45px 0 10px;
+    }
+
+    .project p {
+      color: var(--muted);
+      max-width: 480px;
+      line-height: 1.7;
+      font-size: 13px;
+    }
+
+    .project-icon {
+      position: absolute;
+      right: 30px;
+      bottom: 28px;
+      width: 65px;
+      height: 65px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      color: var(--primary);
+      background: rgba(0,130,255,.08);
+      border: 1px solid var(--border);
+    }
+
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      color: var(--primary);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* =========================
+       FILTERS / GALLERY
+    ========================== */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 25px;
+    }
+
+    .filter {
+      padding: 10px 15px;
+      border-radius: 50px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 11px;
+      transition: .25s;
+    }
+
+    .filter.active,
+    .filter:hover {
+      color: white;
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 15px;
+    }
+
+    .gallery-item {
+      min-height: 230px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      cursor: pointer;
+      background:
+        linear-gradient(135deg, rgba(0,130,255,.17), rgba(100,70,255,.10));
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      min-height: 230px;
+      object-fit: cover;
+      transition: .5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.07);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: auto 12px 12px;
+      padding: 13px;
+      border-radius: 15px;
+      background: rgba(0,0,0,.48);
+      backdrop-filter: blur(12px);
+      color: white;
+      font-size: 12px;
+    }
+
+    /* =========================
+       TEAM
+    ========================== */
+
+    .team {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .team-card {
+      text-align: center;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      background: var(--surface);
+      backdrop-filter: blur(18px);
+    }
+
+    .team-photo {
+      width: 105px;
+      height: 105px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      background: var(--bg-soft);
+      font-size: 27px;
+    }
+
+    .team-card h3 {
+      font-family: "Space Grotesk";
+      margin-bottom: 5px;
+    }
+
+    .team-card span {
+      font-size: 11px;
+      color: var(--primary);
+    }
+
+    .team-card p {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       PARTNERS
+    ========================== */
+
+    .partners {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 12px;
+    }
+
+    .partner {
+      min-height: 85px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: var(--surface);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 12px;
+    }
+
+    /* =========================
+       NEWS
+    ========================== */
+
+    .news {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .news-card {
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .news-image {
+      height: 190px;
+      background:
+        linear-gradient(135deg, rgba(0,150,255,.2), rgba(100,70,255,.16));
+      display: grid;
+      place-items: center;
+      font-size: 38px;
+      color: var(--primary);
+    }
+
+    .news-content {
+      padding: 24px;
+    }
+
+    .news-date {
+      color: var(--primary);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .news-card h3 {
+      font-family: "Space Grotesk";
+      margin: 10px 0;
+    }
+
+    .news-card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 20px;
+    }
+
+    .contact-info,
+    .contact-form {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 27px;
+      background: var(--surface);
+      backdrop-filter: blur(20px);
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 15px;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-item:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-item i {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      color: var(--primary);
+      background: rgba(0,130,255,.08);
+    }
+
+    .contact-item strong {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
+
+    .contact-item span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field {
+      margin-bottom: 13px;
+    }
+
+    .field label {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      margin-bottom: 7px;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      outline: none;
+      border-radius: 14px;
+      padding: 13px 15px;
+      color: var(--text);
+      background: rgba(255,255,255,.04);
+      transition: .25s;
+    }
+
+    .field textarea {
+      min-height: 135px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(0,120,255,.08);
+    }
+
+    /* =========================
+       NEWSLETTER
+    ========================== */
+
+    .newsletter {
+      margin-top: 25px;
+      padding: 38px;
+      border-radius: 28px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(circle at 90% 20%, rgba(0,180,255,.15), transparent 30%),
+        var(--surface);
+      backdrop-filter: blur(20px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .newsletter h3 {
+      font-family: "Space Grotesk";
+      font-size: 25px;
+      margin-bottom: 7px;
+    }
+
+    .newsletter p {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      min-width: 420px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      outline: none;
+      border-radius: 13px;
+      padding: 13px;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      padding: 70px 0 25px;
+      border-top: 1px solid var(--border);
+      background: var(--bg-soft);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 45px;
+    }
+
+    .footer-brand p {
+      color: var(--muted);
+      max-width: 330px;
+      font-size: 12px;
+      line-height: 1.8;
+      margin: 17px 0;
+    }
+
+    .socials {
+      display: flex;
+      gap: 8px;
+    }
+
+    .socials a {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 11px;
+      color: var(--muted);
+      transition: .3s;
+    }
+
+    .socials a:hover {
+      color: white;
+      background: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    .footer-col h4 {
+      font-size: 12px;
+      margin-bottom: 17px;
+    }
+
+    .footer-col a {
+      display: block;
+      color: var(--muted);
+      font-size: 11px;
+      margin: 11px 0;
+      transition: .2s;
+    }
+
+    .footer-col a:hover {
+      color: var(--primary);
+      transform: translateX(3px);
+    }
+
+    .copyright {
+      padding-top: 22px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      color: var(--muted);
+      font-size: 10px;
+    }
+
+    /* =========================
+       WHATSAPP
+    ========================== */
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      background: #25d366;
+      color: white;
+      display: grid;
+      place-items: center;
+      font-size: 25px;
+      z-index: 900;
+      box-shadow: 0 14px 35px rgba(37,211,102,.28);
+      transition: .3s;
+    }
+
+    .whatsapp:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp::before {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border: 1px solid rgba(37,211,102,.35);
+      border-radius: 50%;
+      animation: whatsappPulse 2s infinite;
+    }
+
+    @keyframes whatsappPulse {
+      to {
+        transform: scale(1.35);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       MODAL
+    ========================== */
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(12px);
+      z-index: 5000;
+      display: none;
+      place-items: center;
+      padding: 20px;
+    }
+
+    .modal.show {
+      display: grid;
+    }
+
+    .modal-box {
+      width: min(600px,100%);
+      padding: 30px;
+      border: 1px solid var(--border);
+      background: var(--surface-solid);
+      border-radius: 28px;
+      position: relative;
+      box-shadow: 0 30px 100px rgba(0,0,0,.3);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .modal-box h3 {
+      font-family: "Space Grotesk";
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .modal-box p {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 13px;
+    }
+
+    /* =========================
+       SCROLL REVEAL
+    ========================== */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      width: 0;
+      z-index: 9999;
+      background: linear-gradient(90deg,var(--primary),var(--primary-2),var(--accent));
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+
+    @media (max-width: 1000px) {
+      .nav-links {
+        position: fixed;
+        top: 78px;
+        left: 0;
+        right: 0;
+        padding: 15px;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--header);
+        backdrop-filter: blur(25px);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        transform: translateY(-20px);
+        opacity: 0;
+        pointer-events: none;
+        transition: .3s;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links a {
+        padding: 14px;
+      }
+
+      .menu-btn {
+        display: grid;
+      }
+
+      .stats {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .footer-grid {
+        grid-template-columns: repeat(2,1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      section {
+        padding: 80px 0;
+      }
+
+      .hero {
+        padding-top: 125px;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      .hero-orb {
+        width: 400px;
+        height: 400px;
+        right: -180px;
+        opacity: .4;
+      }
+
+      .cards,
+      .projects,
+      .gallery,
+      .team,
+      .news {
+        grid-template-columns: 1fr;
+      }
+
+      .partners {
+        grid-template-columns: repeat(2,1fr);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .newsletter-form {
+        min-width: 0;
+      }
+
+      .copyright {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 500px) {
+      header {
+        top: 8px;
+      }
+
+      .brand span {
+        font-size: 12px;
+      }
+
+      .brand small {
+        display: none;
+      }
+
+      .stats {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat {
+        padding: 20px 10px;
+      }
+
+      .stat-number {
+        font-size: 31px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+      }
+
+      .hero-buttons .liquid-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div id="app">
-
-<!-- =====================================================
-PAGE 1 — ACCUEIL
-===================================================== -->
-
-<section class="page active" data-page="1">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
-</svg>
-
-</div>
-
-<div class="label">
-Un message de Salomon
-</div>
-
-<h1>
-Pour<br>
-<span class="gradient">Eveline</span>
-</h1>
-
-<p class="text">
-J'ai préparé quelque chose spécialement pour toi.
-Prends quelques instants pour découvrir
-ce que j'ai envie de te dire.
-</p>
-
-<button class="button" onclick="goTo(2)">
-Ouvrir
-<svg viewBox="0 0 24 24">
-<path d="M5 12h14"/>
-<path d="m13 6 6 6-6 6"/>
-</svg>
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 2 — DATE DE RENCONTRE
-===================================================== -->
-
-<section class="page" data-page="2">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-<rect x="3" y="4" width="18" height="17" rx="3"/>
-<path d="M16 2v4"/>
-<path d="M8 2v4"/>
-<path d="M3 10h18"/>
-<path d="M8 14h.01"/>
-<path d="M12 14h.01"/>
-<path d="M16 14h.01"/>
-</svg>
-
-</div>
-
-<div class="label">
-Petite question
-</div>
-
-<h2>
-Tu te souviens<br>
-<span class="gradient">de notre date ?</span>
-</h2>
-
-<p class="text">
-Je dois t'avouer quelque chose...
-ma mémoire m'a peut-être joué un petit tour.
-Alors cette fois, c'est toi qui peux me la rappeler.
-</p>
-
-<div class="card">
-
-<label for="storyDate">
-Notre date de rencontre
-</label>
-
-<input
-type="date"
-id="storyDate"
->
-
-<div
-class="error"
-id="storyDateError"
->
-Choisis une date ou continue sans la choisir.
-</div>
-
-</div>
-
-<button
-class="button"
-onclick="saveStoryDate()"
->
-Choisir cette date
-</button>
-
-<br>
-
-<button
-class="secondary"
-onclick="continueWithoutStoryDate()"
->
-Continuer sans choisir
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 3 — POURQUOI ELLE
-===================================================== -->
-
-<section class="page" data-page="3">
-
-<div class="content">
-
-<div class="label">
-Quelques mots pour toi
-</div>
-
-<h2>
-Pourquoi<br>
-<span class="gradient">toi ?</span>
-</h2>
-
-<p class="text">
-Parce que ce n'est pas une seule chose.
-Ce sont tous ces petits détails qui font
-que tu occupes une place particulière.
-</p>
-
-<div class="reasons">
-
-<div class="reason">
-<h3>Ta présence</h3>
-
-<p>
-Les moments sont différents quand tu es là.
-</p>
-</div>
-
-<div class="reason">
-<h3>Ton sourire</h3>
-
-<p>
-C'est l'un de ces petits détails
-que je remarque naturellement.
-</p>
-</div>
-
-<div class="reason">
-<h3>Ta personnalité</h3>
-
-<p>
-J'apprécie simplement la personne
-que tu es.
-</p>
-</div>
-
-</div>
-
-<button class="button" onclick="goTo(4)">
-Continuer
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 4 — SENTIMENTS
-===================================================== -->
-
-<section class="page" data-page="4">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
-</svg>
-
-</div>
-
-<div class="label">
-Ce que je ressens
-</div>
-
-<h2>
-Simplement<br>
-<span class="gradient">sincère.</span>
-</h2>
-
-<p class="text">
-Je pourrais chercher des mots compliqués,
-mais je préfère simplement être honnête.
-</p>
-
-<div class="date-card">
-
-<p class="text">
-Eveline, je tiens énormément à toi.
-</p>
-
-<p class="text">
-Tu occupes une place particulière dans mon cœur
-et je voulais simplement que tu le saches.
-</p>
-
-</div>
-
-<button class="button" onclick="goTo(5)">
-Continuer
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 5 — HISTOIRE
-===================================================== -->
-
-<section class="page" data-page="5">
-
-<div class="content">
-
-<div class="label">
-Quelques pages de notre histoire
-</div>
-
-<h2>
-Une histoire<br>
-<span class="gradient">à écrire.</span>
-</h2>
-
-<p class="text">
-Les plus beaux souvenirs commencent parfois
-par des choses très simples.
-</p>
-
-<div class="reasons">
-
-<div class="reason">
-<h3>Notre rencontre</h3>
-
-<p>
-Un moment parmi tant d'autres,
-mais qui est devenu important.
-</p>
-</div>
-
-<div class="reason">
-<h3>Aujourd'hui</h3>
-
-<p>
-Je voulais prendre le temps
-de te dire ce que j'ai dans le cœur.
-</p>
-</div>
-
-<div class="reason">
-<h3>Demain</h3>
-
-<p>
-Les prochaines pages ne sont pas encore écrites.
-</p>
-</div>
-
-</div>
-
-<button class="button" onclick="goTo(6)">
-Lire ma lettre
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 6 — LETTRE
-===================================================== -->
-
-<section class="page" data-page="6">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-<rect x="4" y="5" width="16" height="14" rx="2"/>
-<path d="m4 7 8 6 8-6"/>
-</svg>
-
-</div>
-
-<div class="label">
-Une lettre de Salomon
-</div>
-
-<div class="letter">
-
-<p>
-Eveline,
-</p>
-
-<p>
-Je voulais prendre le temps de t'écrire
-quelque chose de différent.
-</p>
-
-<p>
-Je ne sais pas toujours comment mettre
-mes sentiments en mots, alors je préfère
-simplement être sincère avec toi.
-</p>
-
-<p>
-Tu es devenue une personne qui compte
-énormément pour moi.
-</p>
-
-<p>
-J'apprécie nos conversations,
-nos moments et tous ces petits souvenirs.
-</p>
-
-<p>
-Et surtout, je veux que tu saches une chose :
-<strong>je t'aime fort, fort.</strong>
-</p>
-
-<p>
-Merci d'être toi.
-</p>
-
-<div class="signature">
-Salomon
-</div>
-
-</div>
-
-<button class="button" onclick="goTo(7)">
-Une dernière question
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 7 — QUESTION DATE
-===================================================== -->
-
-<section class="page" data-page="7">
-
-<div class="content">
-
-<div class="question-icon">
-
-<svg viewBox="0 0 24 24">
-
-<rect x="3" y="4" width="18" height="17" rx="3"/>
-
-<path d="M16 2v4"/>
-<path d="M8 2v4"/>
-<path d="M3 10h18"/>
-
-<path d="M8 14h.01"/>
-<path d="M12 14h.01"/>
-<path d="M16 14h.01"/>
-
-</svg>
-
-</div>
-
-<div class="label">
-Une petite question
-</div>
-
-<h2>
-Tu veux un<br>
-<span class="gradient">date avec moi ?</span>
-</h2>
-
-<p class="text">
-J'aimerais passer un beau moment avec toi.
-Cette fois, c'est toi qui choisis.
-</p>
-
-<div class="choices">
-
-<button
-class="choice yes"
-onclick="goTo(8)"
->
-Oui
-</button>
-
-<button
-class="choice no"
-onclick="goTo(13)"
->
-Non
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 8 — CHOISIR DATE RENDEZ-VOUS
-===================================================== -->
-
-<section class="page" data-page="8">
-
-<div class="content">
-
-<div class="label">
-Première étape
-</div>
-
-<h2>
-Choisis la<br>
-<span class="gradient">date.</span>
-</h2>
-
-<p class="text">
-Quel jour aimerais-tu qu'on se retrouve ?
-</p>
-
-<div class="card">
-
-<label for="dateInput">
-Date du rendez-vous
-</label>
-
-<input
-type="date"
-id="dateInput"
->
-
-<div
-class="error"
-id="dateError"
->
-Choisis une date pour continuer.
-</div>
-
-</div>
-
-<button
-class="button"
-onclick="saveDate()"
->
-Continuer
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 9 — LIEU
-===================================================== -->
-
-<section class="page" data-page="9">
-
-<div class="content">
-
-<div class="label">
-Deuxième étape
-</div>
-
-<h2>
-Choisis le<br>
-<span class="gradient">lieu.</span>
-</h2>
-
-<p class="text">
-Quel endroit te ferait plaisir ?
-</p>
-
-<div class="places">
-
-<button
-class="place"
-onclick="selectPlace(this,'Magali Resto')"
->
-<span class="place-number">1</span>
-<span>Magali Resto</span>
-</button>
-
-<button
-class="place"
-onclick="selectPlace(this,'L’Alignement')"
->
-<span class="place-number">2</span>
-<span>L’Alignement</span>
-</button>
-
-<button
-class="place"
-onclick="selectPlace(this,'Asha Villa')"
->
-<span class="place-number">3</span>
-<span>Asha Villa</span>
-</button>
-
-<button
-class="place"
-onclick="selectPlace(this,'Serena Hôtel')"
->
-<span class="place-number">4</span>
-<span>Serena Hôtel</span>
-</button>
-
-<button
-class="place"
-onclick="selectPlace(this,'Chez toi')"
->
-<span class="place-number">5</span>
-<span>Chez toi</span>
-</button>
-
-<button
-class="place"
-onclick="selectPlace(this,'Chez moi')"
->
-<span class="place-number">6</span>
-<span>Chez moi</span>
-</button>
-
-</div>
-
-<div
-class="error"
-id="placeError"
->
-Choisis un lieu pour continuer.
-</div>
-
-<button
-class="button"
-onclick="savePlace()"
->
-Continuer
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 10 — HEURE
-===================================================== -->
-
-<section class="page" data-page="10">
-
-<div class="content">
-
-<div class="label">
-Dernière étape
-</div>
-
-<h2>
-Choisis<br>
-<span class="gradient">l'heure.</span>
-</h2>
-
-<p class="text">
-Quelle heure te conviendrait le mieux ?
-</p>
-
-<div class="times">
-
-<button
-class="time"
-onclick="selectTime(this,'12:00')"
->
-12:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'13:00')"
->
-13:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'14:00')"
->
-14:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'15:00')"
->
-15:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'16:00')"
->
-16:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'17:00')"
->
-17:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'18:00')"
->
-18:00
-</button>
-
-<button
-class="time"
-onclick="selectTime(this,'19:00')"
->
-19:00
-</button>
-
-</div>
-
-<div
-class="error"
-id="timeError"
->
-Choisis une heure pour continuer.
-</div>
-
-<button
-class="button"
-onclick="saveTime()"
->
-Voir la synthèse
-</button>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 11 — SYNTHESE
-===================================================== -->
-
-<section class="page" data-page="11">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-
-<rect x="3" y="3" width="18" height="18" rx="4"/>
-
-<path d="m7 12 3 3 7-7"/>
-
-</svg>
-
-</div>
-
-<div class="label">
-Ton choix
-</div>
-
-<h2>
-Notre petit<br>
-<span class="gradient">programme.</span>
-</h2>
-
-<div class="summary">
-
-<div class="summary-row">
-
-<div class="summary-label">
-Date
-</div>
-
-<div
-class="summary-value"
-id="summaryDate"
->
-—
-</div>
-
-</div>
-
-<div class="summary-row">
-
-<div class="summary-label">
-Lieu
-</div>
-
-<div
-class="summary-value"
-id="summaryPlace"
->
-—
-</div>
-
-</div>
-
-<div class="summary-row">
-
-<div class="summary-label">
-Heure
-</div>
-
-<div
-class="summary-value"
-id="summaryTime"
->
-—
-</div>
-
-</div>
-
-</div>
-
-<p class="text">
-Eveline, est-ce que ce programme
-te convient ?
-</p>
-
-<div class="confirm">
-
-<button
-class="confirm-yes"
-onclick="confirmDate()"
->
-Oui, c'est parfait
-</button>
-
-<button
-class="confirm-back"
-onclick="restartDate()"
->
-Non, je veux recommencer
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 12 — CONFIRMATION
-===================================================== -->
-
-<section class="page" data-page="12">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-
-<path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.4a4.7 4.7 0 0 1 8.8 2.3Z"/>
-
-</svg>
-
-</div>
-
-<div class="label">
-Alors c'est décidé
-</div>
-
-<div class="names">
-
-<span class="name gradient">
-Eveline
-</span>
-
-<span class="x">
-×
-</span>
-
-<span class="name">
-Salomon
-</span>
-
-</div>
-
-<p class="final-info">
-
-Notre rendez-vous est choisi.
-
-<br><br>
-
-<strong id="finalDate">—</strong>
-
-<br>
-
-<strong id="finalPlace">—</strong>
-
-<br>
-
-<strong id="finalTime">—</strong>
-
-<br><br>
-
-Je garderai ce petit moment précieusement.
-
-</p>
-
-<div class="love">
-Je t'aime fort.
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-PAGE 13 — NON
-===================================================== -->
-
-<section class="page" data-page="13">
-
-<div class="content">
-
-<div class="icon">
-
-<svg viewBox="0 0 24 24">
-
-<path d="M6 6l12 12"/>
-<path d="M18 6 6 18"/>
-
-</svg>
-
-</div>
-
-<div class="label">
-D'accord
-</div>
-
-<h2>
-Je respecte<br>
-<span class="gradient">ton choix.</span>
-</h2>
-
-<p class="text">
-Aucun problème Eveline.
-Ce qui compte, c'est que tu sois
-à l'aise avec ton choix.
-</p>
-
-<button
-class="button"
-onclick="goTo(7)"
->
-Revenir
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-
-<!-- =====================================================
-PROGRESSION
-===================================================== -->
-
-<div class="progress">
-
-<div class="dot active"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-<div class="dot"></div>
-
-</div>
-
-
-<script>
-
-/* =====================================================
-VARIABLES
-===================================================== */
-
-let storyDate = "";
-
-let selectedDate = "";
-
-let selectedPlace = "";
-
-let selectedTime = "";
-
-
-/* =====================================================
-ELEMENTS
-===================================================== */
-
-const pages = document.querySelectorAll(".page");
-
-const dots = document.querySelectorAll(".dot");
-
-
-/* =====================================================
-NAVIGATION
-===================================================== */
-
-function goTo(number){
-
-    pages.forEach(function(page){
-
-        page.classList.remove("active");
+  <div id="loader">
+    <div class="loader-box">
+      <img class="loader-logo"
+           src="https://i.postimg.cc/25ybsY08/1782158628703.jpg"
+           alt="Dalzon Enterprise">
+      <div class="loader-line"><span></span></div>
+      <p>Dalzon Enterprise</p>
+    </div>
+  </div>
+
+  <div id="progress"></div>
+
+  <!-- PARTICULES -->
+  <div id="particles"></div>
+
+  <!-- HEADER -->
+  <header>
+    <nav class="nav container">
+
+      <a href="#accueil" class="brand">
+        <img src="https://i.postimg.cc/25ybsY08/1782158628703.jpg"
+             alt="Logo Dalzon Enterprise">
+        <div>
+          <span>DALZON</span>
+          <small>Enterprise</small>
+        </div>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#accueil" class="active">Accueil</a>
+        <a href="#apropos">À propos</a>
+        <a href="#projets">Projets</a>
+        <a href="#realisations">Réalisations</a>
+        <a href="#equipe">Équipe</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="nav-actions">
+        <button class="icon-btn" id="themeBtn" aria-label="Changer le thème">
+          <i class="fa-solid fa-moon"></i>
+        </button>
+
+        <button class="icon-btn menu-btn" id="menuBtn" aria-label="Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="accueil">
+      <div class="hero-orb"></div>
+
+      <div class="container">
+        <div class="hero-content reveal">
+
+          <div class="eyebrow">
+            <i class="fa-solid fa-circle-nodes"></i>
+            Technologie · Innovation · Impact
+          </div>
+
+          <h1>
+            Construire le
+            <span class="gradient-text">futur.</span>
+          </h1>
+
+          <p>
+            DALZON ENTERPRISE développe des solutions technologiques,
+            éducatives et numériques conçues pour connecter les idées,
+            les personnes et les opportunités.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projets" class="liquid-btn primary-btn">
+              Découvrir nos projets
+              <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+            <a href="#contact" class="liquid-btn">
+              Nous contacter
+              <i class="fa-regular fa-paper-plane"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section>
+      <div class="container">
+        <div class="stats reveal">
+
+          <div class="stat">
+            <div class="stat-number" data-target="4">0</div>
+            <p>Projets majeurs</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number" data-target="10">0</div>
+            <p>Solutions développées</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number" data-target="100">0</div>
+            <p>% Innovation</p>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number" data-target="24">0</div>
+            <p>Heures sur 24</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- A PROPOS -->
+    <section id="apropos">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Notre identité</div>
+          <h2>Une vision pensée pour demain.</h2>
+          <p>
+            DALZON ENTERPRISE place la technologie au service de l'humain,
+            de l'éducation et du développement. Notre approche combine
+            créativité, innovation et impact concret.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-eye"></i>
+            </div>
+            <h3>Vision</h3>
+            <p>
+              Devenir une référence africaine dans la conception de
+              solutions numériques innovantes et accessibles.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-rocket"></i>
+            </div>
+            <h3>Mission</h3>
+            <p>
+              Transformer les idées en produits et services technologiques
+              capables de répondre aux besoins réels des communautés.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-gem"></i>
+            </div>
+            <h3>Valeurs</h3>
+            <p>
+              Innovation, excellence, responsabilité, créativité,
+              accessibilité et impact constituent notre socle.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- DOMAINES -->
+    <section>
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Expertise</div>
+          <h2>Nos domaines d'intervention.</h2>
+          <p>
+            Des solutions pensées pour accompagner la transformation
+            numérique et créer de nouvelles possibilités.
+          </p>
+        </div>
+
+        <div class="cards">
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-laptop-code"></i>
+            </div>
+            <h3>Solutions digitales</h3>
+            <p>
+              Sites web, applications, plateformes numériques et
+              expériences digitales modernes.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <h3>Éducation</h3>
+            <p>
+              Technologies éducatives destinées à rapprocher l'école,
+              les élèves, les familles et les enseignants.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-mobile-screen-button"></i>
+            </div>
+            <h3>Technologie mobile</h3>
+            <p>
+              Solutions mobiles et écosystèmes conçus pour répondre
+              aux réalités du marché africain.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-music"></i>
+            </div>
+            <h3>Médias numériques</h3>
+            <p>
+              Plateformes de diffusion, contenus numériques et expériences
+              musicales nouvelle génération.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-users"></i>
+            </div>
+            <h3>Impact communautaire</h3>
+            <p>
+              Initiatives et projets destinés à renforcer l'inclusion,
+              l'entraide et l'accès aux opportunités.
+            </p>
+          </article>
+
+          <article class="glass-card reveal">
+            <div class="card-icon">
+              <i class="fa-solid fa-lightbulb"></i>
+            </div>
+            <h3>Innovation</h3>
+            <p>
+              Recherche de nouvelles approches pour transformer
+              les défis locaux en opportunités technologiques.
+            </p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section id="projets">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Nos projets</div>
+          <h2>Des idées qui deviennent des produits.</h2>
+          <p>
+            Découvrez quelques-uns des écosystèmes développés autour
+            de la vision Dalzon.
+          </p>
+        </div>
+
+        <div class="projects">
+
+          <article class="project reveal">
+            <span class="project-number">01 / EDUCATION</span>
+            <h3>Dalzon Shule</h3>
+            <p>
+              Une plateforme éducative pensée pour connecter l'école
+              et la maison grâce au numérique.
+            </p>
+            <a href="https://dalzonshule.com/" class="project-link" target="_blank">
+              Découvrir le projet
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            </a>
+            <div class="project-icon">
+              <i class="fa-solid fa-school"></i>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">02 / MOBILE</span>
+            <h3>Dalzon Mobile</h3>
+            <p>
+              Une vision autour d'une technologie mobile adaptée
+              aux besoins et réalités du marché congolais.
+            </p>
+            <div class="project-icon">
+              <i class="fa-solid fa-mobile-screen"></i>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">03 / MUSIC</span>
+            <h3>NDULE+</h3>
+            <p>
+              Une expérience numérique dédiée à la découverte et
+              à la diffusion des artistes et de la musique de Goma.
+            </p>
+            <div class="project-icon">
+              <i class="fa-solid fa-headphones"></i>
+            </div>
+          </article>
+
+          <article class="project reveal">
+            <span class="project-number">04 / COMMUNITY</span>
+            <h3>Dalzon Community</h3>
+            <p>
+              Des initiatives orientées vers l'impact social,
+              l'accompagnement et la création d'opportunités.
+            </p>
+            <div class="project-icon">
+              <i class="fa-solid fa-handshake"></i>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- REALISATIONS -->
+    <section id="realisations">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Réalisations</div>
+          <h2>Ce que nous construisons.</h2>
+          <p>
+            Une galerie évolutive pour présenter les réalisations
+            et événements de Dalzon Enterprise.
+          </p>
+        </div>
+
+        <div class="filters reveal">
+          <button class="filter active" data-filter="all">Tout</button>
+          <button class="filter" data-filter="education">Éducation</button>
+          <button class="filter" data-filter="tech">Technologie</button>
+          <button class="filter" data-filter="community">Community</button>
+        </div>
+
+        <div class="gallery">
+
+          <div class="gallery-item reveal" data-category="education" data-modal="Dalzon Shule">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=900&q=80" alt="Éducation numérique">
+            <div class="gallery-overlay">Dalzon Shule</div>
+          </div>
+
+          <div class="gallery-item reveal" data-category="tech" data-modal="Innovation technologique">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80" alt="Technologie">
+            <div class="gallery-overlay">Innovation technologique</div>
+          </div>
+
+          <div class="gallery-item reveal" data-category="community" data-modal="Dalzon Community">
+            <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=900&q=80" alt="Communauté">
+            <div class="gallery-overlay">Dalzon Community</div>
+          </div>
+
+          <div class="gallery-item reveal" data-category="tech" data-modal="Dalzon Mobile">
+            <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80" alt="Mobile">
+            <div class="gallery-overlay">Dalzon Mobile</div>
+          </div>
+
+          <div class="gallery-item reveal" data-category="education" data-modal="Innovation éducative">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=900&q=80" alt="Livres et éducation">
+            <div class="gallery-overlay">Innovation éducative</div>
+          </div>
+
+          <div class="gallery-item reveal" data-category="community" data-modal="Impact communautaire">
+            <img src="https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=900&q=80" alt="Impact communautaire">
+            <div class="gallery-overlay">Impact communautaire</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EQUIPE -->
+    <section id="equipe">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Notre équipe</div>
+          <h2>Les personnes derrière la vision.</h2>
+          <p>
+            Cette section est volontairement préparée pour recevoir
+            les vrais membres de l'équipe, leurs fonctions et leurs photos.
+          </p>
+        </div>
+
+        <div class="team">
+
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <h3>Nom du membre</h3>
+            <span>Fonction</span>
+            <p>Présentation du membre à compléter.</p>
+          </article>
+
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <h3>Nom du membre</h3>
+            <span>Fonction</span>
+            <p>Présentation du membre à compléter.</p>
+          </article>
+
+          <article class="team-card reveal">
+            <div class="team-photo">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <h3>Nom du membre</h3>
+            <span>Fonction</span>
+            <p>Présentation du membre à compléter.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PARTENAIRES -->
+    <section>
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Écosystème</div>
+          <h2>Nos partenaires.</h2>
+          <p>
+            Un espace prêt à accueillir les logos et noms des partenaires
+            officiels de Dalzon Enterprise.
+          </p>
+        </div>
+
+        <div class="partners reveal">
+          <div class="partner">PARTENAIRE</div>
+          <div class="partner">PARTENAIRE</div>
+          <div class="partner">PARTENAIRE</div>
+          <div class="partner">PARTENAIRE</div>
+          <div class="partner">PARTENAIRE</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ACTUALITES -->
+    <section>
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Actualités</div>
+          <h2>Les dernières nouvelles.</h2>
+          <p>
+            Une section prête à recevoir les communications,
+            annonces et actualités officielles.
+          </p>
+        </div>
+
+        <div class="news">
+
+          <article class="news-card reveal">
+            <div class="news-image">
+              <i class="fa-solid fa-newspaper"></i>
+            </div>
+            <div class="news-content">
+              <span class="news-date">Actualité</span>
+              <h3>Les nouveautés Dalzon</h3>
+              <p>
+                Retrouvez ici les prochaines annonces et évolutions
+                de nos projets technologiques.
+              </p>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <div class="news-image">
+              <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="news-content">
+              <span class="news-date">Innovation</span>
+              <h3>Construire autrement</h3>
+              <p>
+                Nous continuons à explorer de nouvelles solutions
+                numériques adaptées à notre environnement.
+              </p>
+            </div>
+          </article>
+
+          <article class="news-card reveal">
+            <div class="news-image">
+              <i class="fa-solid fa-calendar-days"></i>
+            </div>
+            <div class="news-content">
+              <span class="news-date">Événements</span>
+              <h3>Nos prochaines étapes</h3>
+              <p>
+                Suivez les événements, lancements et initiatives
+                portés par l'écosystème Dalzon.
+              </p>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+
+        <div class="section-head reveal">
+          <div class="section-kicker">Contact</div>
+          <h2>Construisons quelque chose de grand.</h2>
+          <p>
+            Une idée, un partenariat ou un projet ? Parlons-en.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+
+          <div class="contact-info reveal">
+
+            <div class="contact-item">
+              <i class="fa-brands fa-whatsapp"></i>
+              <div>
+                <strong>WhatsApp</strong>
+                <span>+243 980 772 866</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-regular fa-envelope"></i>
+              <div>
+                <strong>Email</strong>
+                <span>Info.dalzon@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-solid fa-globe"></i>
+              <div>
+                <strong>Site web</strong>
+                <span>Dalzon Enterprise</span>
+              </div>
+            </div>
+
+            <div class="contact-item">
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <strong>Présence</strong>
+                <span>République démocratique du Congo</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- FORMSPREE -->
+          <form
+            class="contact-form reveal"
+            action="https://formspree.io/f/moeqlnkn"
+            method="POST">
+
+            <div class="form-row">
+              <div class="field">
+                <label>Nom</label>
+                <input type="text" name="name" placeholder="Votre nom" required>
+              </div>
+
+              <div class="field">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Votre adresse email" required>
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Sujet</label>
+              <input type="text" name="subject" placeholder="Objet de votre message">
+            </div>
+
+            <div class="field">
+              <label>Message</label>
+              <textarea name="message" placeholder="Écrivez votre message..." required></textarea>
+            </div>
+
+            <button class="liquid-btn primary-btn" type="submit">
+              Envoyer le message
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+
+          </form>
+
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="newsletter reveal">
+
+          <div>
+            <h3>Restez connecté à Dalzon.</h3>
+            <p>
+              Recevez nos actualités, annonces et nouveautés.
+            </p>
+          </div>
+
+          <form
+            class="newsletter-form"
+            action="https://formspree.io/f/moeqlnkn"
+            method="POST">
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Votre adresse email"
+              required>
+
+            <input
+              type="hidden"
+              name="subject"
+              value="Inscription Newsletter Dalzon Enterprise">
+
+            <button class="liquid-btn primary-btn" type="submit">
+              S'inscrire
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div class="footer-brand">
+          <a href="#accueil" class="brand">
+            <img src="https://i.postimg.cc/25ybsY08/1782158628703.jpg"
+                 alt="Dalzon Enterprise">
+            <div>
+              <span>DALZON</span>
+              <small>Enterprise</small>
+            </div>
+          </a>
+
+          <p>
+            Technologie, innovation et impact.
+            Nous transformons les idées en solutions numériques.
+          </p>
+
+          <div class="socials">
+            <a href="#" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="#" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a href="#" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok"></i>
+            </a>
+
+            <a href="https://wa.me/243980772866" target="_blank" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <a href="#accueil">Accueil</a>
+          <a href="#apropos">À propos</a>
+          <a href="#projets">Projets</a>
+          <a href="#realisations">Réalisations</a>
+          <a href="#equipe">Équipe</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Projets</h4>
+          <a href="https://dalzonshule.com/" target="_blank">Dalzon Shule</a>
+          <a href="#projets">Dalzon Mobile</a>
+          <a href="#projets">NDULE+</a>
+          <a href="#projets">Dalzon Community</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Informations</h4>
+          <a href="#contact">Contact</a>
+          <a href="#contact">Partenariats</a>
+          <a href="#contact">Newsletter</a>
+          <a href="#accueil">Retour en haut</a>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        <span>© <span id="year"></span> DALZON ENTERPRISE. Tous droits réservés.</span>
+        <span>Innovation · Technologie · Impact</span>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- WHATSAPP -->
+  <a
+    class="whatsapp"
+    href="https://wa.me/243980772866"
+    target="_blank"
+    aria-label="Contacter Dalzon Enterprise sur WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <h3 id="modalTitle">Projet Dalzon</h3>
+      <p id="modalText">
+        Découvrez cette réalisation de Dalzon Enterprise.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    /* =========================
+       LOADER
+    ========================== */
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("loader").classList.add("hide");
+      }, 700);
+    });
+
+
+    /* =========================
+       THEME
+    ========================== */
+
+    const themeBtn = document.getElementById("themeBtn");
+
+    const savedTheme = localStorage.getItem("dalzon-theme");
+
+    if (savedTheme === "dark") {
+      document.body.classList.add("dark");
+      themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+    }
+
+    themeBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+
+      const dark = document.body.classList.contains("dark");
+
+      localStorage.setItem(
+        "dalzon-theme",
+        dark ? "dark" : "light"
+      );
+
+      themeBtn.innerHTML = dark
+        ? '<i class="fa-solid fa-sun"></i>'
+        : '<i class="fa-solid fa-moon"></i>';
+    });
+
+
+    /* =========================
+       MOBILE MENU
+    ========================== */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+
+      menuBtn.innerHTML = navLinks.classList.contains("open")
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+
+    /* =========================
+       ACTIVE NAV
+    ========================== */
+
+    const sections = document.querySelectorAll("section[id]");
+    const links = document.querySelectorAll(".nav-links a");
+
+    window.addEventListener("scroll", () => {
+
+      let current = "";
+
+      sections.forEach(section => {
+        const top = section.offsetTop - 150;
+
+        if (window.scrollY >= top) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      links.forEach(link => {
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
 
     });
 
-    const target = document.querySelector(
-        '.page[data-page="' + number + '"]'
-    );
 
-    if(target){
+    /* =========================
+       SCROLL PROGRESS
+    ========================== */
 
-        target.classList.add("active");
+    window.addEventListener("scroll", () => {
 
-        target.scrollTop = 0;
+      const scrollTop = window.scrollY;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
 
+      const progress =
+        (scrollTop / height) * 100;
+
+      document.getElementById("progress").style.width =
+        progress + "%";
+    });
+
+
+    /* =========================
+       PARTICLES
+    ========================== */
+
+    const particleContainer =
+      document.getElementById("particles");
+
+    for (let i = 0; i < 65; i++) {
+
+      const particle =
+        document.createElement("span");
+
+      particle.className = "particle";
+
+      particle.style.left =
+        Math.random() * 100 + "%";
+
+      particle.style.animationDuration =
+        (5 + Math.random() * 12) + "s";
+
+      particle.style.animationDelay =
+        Math.random() * 10 + "s";
+
+      particle.style.opacity =
+        Math.random() * .7;
+
+      particleContainer.appendChild(particle);
     }
 
-    dots.forEach(function(dot,index){
 
-        dot.classList.toggle(
-            "active",
-            index === number - 1
+    /* =========================
+       REVEAL ANIMATIONS
+    ========================== */
+
+    const revealObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+              entry.target.classList.add("visible");
+
+              revealObserver.unobserve(entry.target);
+
+            }
+
+          });
+
+        },
+        {
+          threshold: .12
+        }
+      );
+
+    document
+      .querySelectorAll(".reveal")
+      .forEach(el => revealObserver.observe(el));
+
+
+    /* =========================
+       COUNTERS
+    ========================== */
+
+    const counters =
+      document.querySelectorAll(".stat-number");
+
+    const counterObserver =
+      new IntersectionObserver(
+        entries => {
+
+          entries.forEach(entry => {
+
+            if (!entry.isIntersecting) return;
+
+            const counter = entry.target;
+            const target =
+              Number(counter.dataset.target);
+
+            let current = 0;
+
+            const duration = 1400;
+            const start = performance.now();
+
+            function update(time) {
+
+              const progress =
+                Math.min(
+                  (time - start) / duration,
+                  1
+                );
+
+              current =
+                Math.floor(
+                  progress * target
+                );
+
+              counter.textContent =
+                current;
+
+              if (progress < 1) {
+                requestAnimationFrame(update);
+              } else {
+                counter.textContent = target;
+              }
+            }
+
+            requestAnimationFrame(update);
+
+            counterObserver.unobserve(counter);
+
+          });
+
+        },
+        {
+          threshold: .7
+        }
+      );
+
+    counters.forEach(c =>
+      counterObserver.observe(c)
+    );
+
+
+    /* =========================
+       GALLERY FILTER
+    ========================== */
+
+    const filters =
+      document.querySelectorAll(".filter");
+
+    const galleryItems =
+      document.querySelectorAll(".gallery-item");
+
+    filters.forEach(filter => {
+
+      filter.addEventListener("click", () => {
+
+        filters.forEach(f =>
+          f.classList.remove("active")
         );
 
+        filter.classList.add("active");
+
+        const category =
+          filter.dataset.filter;
+
+        galleryItems.forEach(item => {
+
+          const match =
+            category === "all" ||
+            item.dataset.category === category;
+
+          item.style.display =
+            match ? "block" : "none";
+
+        });
+
+      });
+
     });
 
-}
 
+    /* =========================
+       MODAL
+    ========================== */
 
-/* =====================================================
-DATE DE RENCONTRE
-===================================================== */
+    const modal =
+      document.getElementById("modal");
 
-function saveStoryDate(){
+    const modalTitle =
+      document.getElementById("modalTitle");
 
-    const input =
-        document.getElementById("storyDate");
+    const modalText =
+      document.getElementById("modalText");
 
-    const error =
-        document.getElementById("storyDateError");
+    const modalClose =
+      document.getElementById("modalClose");
 
-    if(!input.value){
+    galleryItems.forEach(item => {
 
-        error.style.display = "block";
+      item.addEventListener("click", () => {
 
-        return;
+        modalTitle.textContent =
+          item.dataset.modal;
 
-    }
+        modalText.textContent =
+          "Cette réalisation fait partie de l'écosystème DALZON ENTERPRISE. Les informations détaillées pourront être ajoutées ici.";
 
-    error.style.display = "none";
+        modal.classList.add("show");
 
-    storyDate = input.value;
+      });
 
-    goTo(3);
+    });
 
-}
+    modalClose.addEventListener("click", () => {
+      modal.classList.remove("show");
+    });
 
+    modal.addEventListener("click", event => {
 
-/* CONTINUER SANS DATE */
+      if (event.target === modal) {
+        modal.classList.remove("show");
+      }
 
-function continueWithoutStoryDate(){
+    });
 
-    storyDate = "";
 
-    const error =
-        document.getElementById("storyDateError");
+    /* =========================
+       YEAR
+    ========================== */
 
-    error.style.display = "none";
+    document.getElementById("year")
+      .textContent = new Date().getFullYear();
 
-    goTo(3);
 
-}
+    /* =========================
+       ESCAPE = CLOSE MODAL
+    ========================== */
 
+    document.addEventListener("keydown", event => {
 
-/* =====================================================
-DATE DU RENDEZ-VOUS
-===================================================== */
+      if (event.key === "Escape") {
+        modal.classList.remove("show");
+        navLinks.classList.remove("open");
+      }
 
-function saveDate(){
+    });
 
-    const input =
-        document.getElementById("dateInput");
 
-    const error =
-        document.getElementById("dateError");
+    /* =========================
+       SUBTLE MOUSE PARALLAX
+    ========================== */
 
-    if(!input.value){
+    const orb =
+      document.querySelector(".hero-orb");
 
-        error.style.display = "block";
+    document.addEventListener("mousemove", e => {
 
-        return;
+      if (window.innerWidth < 900) return;
 
-    }
+      const x =
+        (e.clientX / window.innerWidth - .5) * 20;
 
-    error.style.display = "none";
+      const y =
+        (e.clientY / window.innerHeight - .5) * 20;
 
-    selectedDate = input.value;
+      orb.style.marginLeft = x + "px";
+      orb.style.marginTop = y + "px";
 
-    goTo(9);
+    });
 
-}
 
+    /* =========================
+       FORM FEEDBACK
+    ========================== */
 
-/* =====================================================
-CHOIX DU LIEU
-===================================================== */
+    document.querySelectorAll("form").forEach(form => {
 
-function selectPlace(element,name){
+      form.addEventListener("submit", () => {
 
-    document.querySelectorAll(".place").forEach(
-        function(place){
+        const button =
+          form.querySelector("button");
 
-            place.classList.remove("selected");
+        if (!button) return;
 
-        }
-    );
+        const oldHTML =
+          button.innerHTML;
 
-    element.classList.add("selected");
+        button.innerHTML =
+          '<i class="fa-solid fa-spinner fa-spin"></i> Envoi...';
 
-    selectedPlace = name;
+        setTimeout(() => {
+          button.innerHTML = oldHTML;
+        }, 3500);
 
-    document.getElementById(
-        "placeError"
-    ).style.display = "none";
+      });
 
-}
-
-
-function savePlace(){
-
-    const error =
-        document.getElementById("placeError");
-
-    if(!selectedPlace){
-
-        error.style.display = "block";
-
-        return;
-
-    }
-
-    error.style.display = "none";
-
-    goTo(10);
-
-}
-
-
-/* =====================================================
-CHOIX DE L'HEURE
-===================================================== */
-
-function selectTime(element,time){
-
-    document.querySelectorAll(".time").forEach(
-        function(button){
-
-            button.classList.remove("selected");
-
-        }
-    );
-
-    element.classList.add("selected");
-
-    selectedTime = time;
-
-    document.getElementById(
-        "timeError"
-    ).style.display = "none";
-
-}
-
-
-function saveTime(){
-
-    const error =
-        document.getElementById("timeError");
-
-    if(!selectedTime){
-
-        error.style.display = "block";
-
-        return;
-
-    }
-
-    error.style.display = "none";
-
-    updateSummary();
-
-    goTo(11);
-
-}
-
-
-/* =====================================================
-FORMAT DATE
-===================================================== */
-
-function formatDate(value){
-
-    if(!value){
-
-        return "Aucune date choisie";
-
-    }
-
-    const date =
-        new Date(value + "T12:00:00");
-
-    return date.toLocaleDateString(
-        "fr-FR",
-        {
-            day:"numeric",
-            month:"long",
-            year:"numeric"
-        }
-    );
-
-}
-
-
-/* =====================================================
-SYNTHESE
-===================================================== */
-
-function updateSummary(){
-
-    document.getElementById(
-        "summaryDate"
-    ).textContent =
-        formatDate(selectedDate);
-
-    document.getElementById(
-        "summaryPlace"
-    ).textContent =
-        selectedPlace || "—";
-
-    document.getElementById(
-        "summaryTime"
-    ).textContent =
-        selectedTime || "—";
-
-}
-
-
-/* =====================================================
-CONFIRMATION
-===================================================== */
-
-function confirmDate(){
-
-    document.getElementById(
-        "finalDate"
-    ).textContent =
-        formatDate(selectedDate);
-
-    document.getElementById(
-        "finalPlace"
-    ).textContent =
-        selectedPlace || "—";
-
-    document.getElementById(
-        "finalTime"
-    ).textContent =
-        selectedTime || "—";
-
-    goTo(12);
-
-}
-
-
-/* =====================================================
-RECOMMENCER LE RENDEZ-VOUS
-===================================================== */
-
-function restartDate(){
-
-    selectedDate = "";
-
-    selectedPlace = "";
-
-    selectedTime = "";
-
-    document.getElementById(
-        "dateInput"
-    ).value = "";
-
-    document.querySelectorAll(".place").forEach(
-        function(place){
-
-            place.classList.remove("selected");
-
-        }
-    );
-
-    document.querySelectorAll(".time").forEach(
-        function(time){
-
-            time.classList.remove("selected");
-
-        }
-    );
-
-    document.querySelectorAll(".error").forEach(
-        function(error){
-
-            error.style.display = "none";
-
-        }
-    );
-
-    goTo(7);
-
-}
-
-
-/* =====================================================
-DEMARRAGE
-===================================================== */
-
-goTo(1);
-
-</script>
+    });
+  </script>
 
 </body>
 </html>
+```
